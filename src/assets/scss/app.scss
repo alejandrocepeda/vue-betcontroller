@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Varela+Round 7');
+@import "./_variables.scss";
+
+ul{
+    list-style: none;
+    padding-inline-start: 0px !important;
+}
+#app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+}
+body{
+    background-color: #192c36 !important;
+    color:#8697a2 !important;
+}
+
+a,label{
+    color: #8697a2 !important;
+}
+
+a:hover{
+    color: #fff !important;
+}
+
+a:focus{
+    
+    border: none !important;
+}
+
+a:active{
+    
+    border: none !important;
+}
+
+.loading h6{
+    color:#fff
+} 

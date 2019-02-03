@@ -1,0 +1,44 @@
+/*Bootstrap 4 custom styles*/
+@import "./_variables.scss";
+
+
+.btn-primary{
+    border-color: $btn-primary-color !important;
+    background: $btn-primary-color !important;
+}
+
+.btn-primary:hover{
+    background: $btn-primary-color-hover !important;
+}
+
+.btn:focus {
+    outline-style: none !important;
+    box-shadow: none !important;
+}
+
+input[type="search"],
+input[type="text"],
+input[type="email"],
+input[type="password"]{
+    background: transparent !important;;
+    border: 0 !important;;
+    border-radius: 0 !important;;
+    border-bottom: 1px solid #304854 !important;;
+    padding: 0 !important;
+    -webkit-appearance: none !important;
+    outline: none !important;
+    color:#fff !important;   
+    outline-style: none !important;
+    box-shadow: none !important;
+}
+
+input:focus{
+    border-bottom: 1px solid #0cd664 !important;
+}
+
+h1{
+    font-size: 36px !important;
+    color:#fff !important;
+    font-family: 'Source Sans Pro', sans-serif !important;
+    font-weight: normal  !important;
+}
