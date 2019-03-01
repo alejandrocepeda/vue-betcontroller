@@ -1,24 +1,18 @@
 <template>
   <div id="app">
 
-    <v-menu></v-menu>
-    
-    <transition name="fade" mode="out-in">
-      <router-view></router-view>
-    </transition>
-
+    <div>
+      <transition name="fade" mode="out-in">
+        <router-view></router-view>
+      </transition>
+    </div>
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
-import menu from '@/components/Menu.vue'
 
-Vue.component('v-menu', menu)
 
-export default {
-  name: 'app'
-}
+export default {}
 </script>
  
 <style scope>

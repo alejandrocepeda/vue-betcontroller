@@ -1,21 +1,27 @@
 <template>
-<div>
-	<h1>Events</h1>
+<div  class="card">
+  
+  <div class="card-header">
+    <h4 class="card-title">contacs</h4>
+  </div>
 
- 
-  <pagination :columns="columns" :rows="events"></pagination>
-
+  <div class="card-body">
+    <pagination :columns="columns" :rows="contacts"></pagination>
+  </div>
+  
 </div>
-</template>	
+
+  
+</template>
 
 <script>
 import axios from 'axios'
 
 export default {
-  name: 'Events',
-  data() {
+  name: 'Contacts',
+  data: function () {
     return {
-      events : [],
+      contacts : [],
       columns: [
         {
           label: 'Id',
@@ -27,25 +33,26 @@ export default {
         },
         {
           label: 'Date Time',
-          field: 'date'
+          field: 'date_time'
         }
       ],
     }
   },
   created() {
-    this.getEvents()
+    this.getContacts()
   },
   methods: {   
-    getEvents(){
+    getContacts(){
       
       this.$store.state.loading = true
-      
+
+     
 
       axios
-      .get('api/events')
+      .get('events')
       .then(response => {
           this.$store.state.loading = false
-          this.events =  response.data.data
+          this.contacts =  response.data.data         
       })
       .catch(error => {
         console.log(error)
@@ -54,7 +61,7 @@ export default {
   }
 }
 </script>
-
+ 
 <style scoped>
-	
+
 </style>

@@ -3,7 +3,7 @@
     <div>
     
         <div class="form-group mb-5 text-white">
-            <h2 class="text-center ">Sign in</h2>
+            <h2 class="text-center ">Create an Account</h2>
         </div>
 
         <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
@@ -19,7 +19,7 @@
                                     
                                     <div class="input-group" :class="{'is-danger': errors.email }">
                                         
-                                        <input class="form-control input-border" v-model="form.email" type="email" placeholder="Username or email">
+                                        <input class="form-control input-border" v-model="form.email" type="email" placeholder="Username">
                                     </div>
                                     <span v-if="errors.email" class="text-danger float-left small">{{ errors.email }}</span>
                                 </div>
@@ -35,7 +35,7 @@
                                 <div class="form-group ">
                                     <button type="submit" class="mt-4 btn btn-success btn-lg btn-block full_rounded">
                                         <font-awesome-icon v-if="loading" icon="circle-notch" class="btn-icon" spin/>
-                                        Sign in
+                                        Create an Account
                                     </button>
 
                                     <transition name="fade">
@@ -48,15 +48,16 @@
                                 </div>
 
                                 <div class="form-group d-flex justify-content-between">
-                                    <router-link class="text-black text-small" :to="{ name: 'sign_up' }" >Create account</router-link>
+                                    <router-link class="text-black text-small" :to="{ name: 'auth/sign_in' }" >Back to sign In</router-link>
 
-                                    <router-link class="text-black text-small" :to="{ name: 'password_reset' }" >Password reset</router-link>
+                                    
+                                    
                                 </div>
 
                                 <p class="text-center text-muted">Or sign in with</p>
                                 <div class="form-group">
                                     <button class="btn btn-lg g-login">
-                                    <img  width="20"  src="https://image.flaticon.com/icons/svg/281/281764.svg" class="mr-2" alt="Icon Google"> <span class="text-dark ">Google</span></button>
+                                    <img  width="20"  src="https://image.flaticon.com/icons/svg/281/281764.svg" class="mr-2" alt="Icon Google">Google</button>
                                 </div>
                             </form>
                         </div>
@@ -70,6 +71,7 @@
 
 <script>
 import {login} from '../../config/auth'
+
 
 export default {
     data () {
@@ -120,7 +122,7 @@ export default {
 
                 app.loading = true
                 
-                axios.post('login', app.form)
+                axios.post('api/login', app.form)
                 .then(function (response) {
                     app.loading = false
                    
@@ -131,7 +133,7 @@ export default {
                     if (redirect) {
                         app.$router.push(redirect)
                     } else {
-                        app.$router.push({name: 'dashboard'})
+                        app.$router.push({name: 'events'})
                     }
                 })
                 .catch(function (error) {
@@ -164,10 +166,10 @@ export default {
 
             return false
         },
-        validEmail (email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email)
-},
+        validEmail(email) {
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email)
+        },
         close_alert: function () {
             let app = this
             app.errors.credentials = false

@@ -1,2 +1,68 @@
-$btn-primary-color: #0cd664;
-$btn-primary-color-hover: #00e865;
+// colors
+$success-color: #16D39A;
+$primary-color:#00B5B8;
+$danger-color:#FF7588;
+$info-color:#2DCEE3;
+$warning-color:#FFA87D;
+$red-color:#F44336;
+$pink-color:#E91E63;
+$purple-color:#9C27B0;
+$blue-color:#2196F3;
+$cyan-color:#00BCD4;
+$teal-color:#009688;
+$yellow-color:#FFEB3B;
+$amber-color:#FFC107;
+$blue-grey-color:#607D8B;
+
+//badge colors
+$badge-success-color:$success-color;
+$badge-primary-color:$primary-color;
+$badge-danger-color:$danger-color;
+$badge-warning-color:$warning-color;
+$badge-info-color:$info-color;
+
+//a color
+$a-color:#009C9F;
+$a-color-hover:#008385;
+
+
+//body text color
+$body-text-color: #404E67;
+//loading color
+$loading-color:#0cd664;
+// buttons primary
+$btn-primary-border-color: #00A5A8;
+$btn-primary-backbround-color: #00B5B8;
+
+// buttons primary hover
+$btn-primary-border-color-hover: #00AEB1;
+$btn-primary-backbround-color-hover: #26C0C3;
+
+// buttons success
+$btn-success-border-color: #10C888;
+$btn-success-backbround-color: #16D39A;
+// buttons success hover
+$btn-success-border-color-hover: #13CE92;
+$btn-success-backbround-color-hover: #39DAA9;
+// buttons danger
+$btn-danger-border-color: #FF6275;
+$btn-danger-backbround-color: #FF7588;
+// buttons danger hover
+$btn-danger-border-color-hover: #FF6D80;
+$btn-danger-backbround-color-hover: #FF8A9A;
+// buttons warning
+$btn-warning-border-color: #FF976A;
+$btn-warning-backbround-color: #FFA87D;
+// buttons warning hover
+$btn-warning-border-color-hover: #FFA075;
+$btn-warning-backbround-color-hover: #FFB591;
+// buttons info
+$btn-info-border-color: #22C2DC;
+$btn-info-backbround-color: #2DCEE3;
+// buttons info hover
+$btn-info-border-color-hover: #28C9E0;
+$btn-info-backbround-color-hover: #4DD5E7;
+
+$auth-screen-background-color: #404E67;
+$navbar-background-color: #404E67;
+$body-background-color:#F5F7FA;

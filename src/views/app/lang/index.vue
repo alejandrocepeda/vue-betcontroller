@@ -1,6 +1,12 @@
 <template>
-  <div>
-    
+
+<div class="card">
+  
+  <div class="card-header">
+    <h4 class="card-title">lang</h4>
+  </div>
+
+  <div class="card-body">
     <select v-model="lang">
       <option v-bind:key="item.code" v-for="(item) in availableLanguages" :value="item.code">{{ item.full }}</option>
     </select>
@@ -12,8 +18,11 @@
       <li>{{ trans('Bye') }} </li>
       <li>{{ trans('Hello') }} </li>
     </ul>
-    
   </div>
+  
+</div>
+
+ 
 </template>
 
 <script>

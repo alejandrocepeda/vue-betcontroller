@@ -1,14 +1,97 @@
 /*Bootstrap 4 custom styles*/
 @import "./_variables.scss";
 
+.alert-danger{
+    color: #ffffff !important;
+    background-color: $danger-color !important;
+    border-color: $danger-color !important;
+}
+
+.badge-primary {
+    background-color: $badge-primary-color !important;
+}
+
+.badge-warning {
+    background-color: $badge-warning-color !important;
+}
+
+.badge-danger {
+    background-color: $badge-danger-color !important;
+}
+
+.badge-success {
+    background-color: $badge-success-color !important;
+}
+
+.badge-info {
+    background-color: $badge-info-color !important;
+}
+
+.badge, .badge[class*=badge-] a, .card-head-inverse, .card-head-inverse .heading-elements i, .text-white .heading-elements i {
+    color: #FFF;
+}
+
+.table th, .table td{
+    vertical-align: middle !important;
+}
+a:hover {
+    text-decoration: none !important;
+}
+
+a{
+    color: $a-color !important;
+    text-decoration: none !important;
+    background-color: transparent;
+}
 
 .btn-primary{
-    border-color: $btn-primary-color !important;
-    background: $btn-primary-color !important;
+    border-color: $btn-primary-border-color !important;
+    background-color: $btn-primary-backbround-color !important;
 }
 
 .btn-primary:hover{
-    background: $btn-primary-color-hover !important;
+    border-color:$btn-primary-border-color-hover !important;
+    background-color: $btn-primary-backbround-color-hover !important;
+}
+
+.btn-success{
+    border-color: $btn-success-border-color !important;
+    background-color: $btn-success-backbround-color !important;
+}
+
+.btn-success:hover{
+    border-color:$btn-success-border-color-hover !important;
+    background-color: $btn-success-backbround-color-hover !important;
+}
+
+.btn-danger{
+    border-color: $btn-danger-border-color !important;
+    background-color: $btn-danger-backbround-color !important;
+}
+
+.btn-danger:hover{
+    border-color:$btn-danger-border-color-hover !important;
+    background-color: $btn-danger-backbround-color-hover !important;
+}
+
+.btn-warning{
+    border-color: $btn-warning-border-color !important;
+    background-color: $btn-warning-backbround-color !important;
+}
+
+.btn-warning:hover{
+    border-color:$btn-warning-border-color-hover !important;
+    background-color: $btn-warning-backbround-color-hover !important;
+}
+
+.btn-info{
+    border-color: $btn-info-border-color !important;
+    background-color: $btn-info-backbround-color !important;
+}
+
+.btn-info:hover{
+    border-color:$btn-info-border-color-hover !important;
+    background-color: $btn-info-backbround-color-hover !important;
 }
 
 .btn:focus {
@@ -16,29 +99,156 @@
     box-shadow: none !important;
 }
 
+.btn{
+    color: #FFF !important;
+}
+
+.bg-primary{
+    background-color: $primary-color !important;
+}
+
+.bg-danger{
+    background-color: $danger-color !important;
+}
+
+.bg-success{
+    background-color: $success-color !important;
+}
+
+.bg-info{
+    background-color: $info-color !important;
+}
+
+.bg-warning{
+    background-color: $warning-color !important;
+}
+
+.bg-danger{
+    background-color: $danger-color !important;
+}
+
+.primary {
+    color: $primary-color!important;
+}
+
+.success {
+    color: $success-color !important;
+}
+
+.danger {
+    color: $danger-color !important;
+}
+
+.info {
+    color: $info-color !important;
+}
+
+.warning {
+    color: $warning-color !important;
+}
+
+
+.font-medium-1 {
+    font-size: 1.1rem!important;
+}
+
+.font-medium-2 {
+    font-size: 1.2rem!important;
+}
+
+.font-medium-3 {
+    font-size: 1.3rem!important;
+}
+
+.font-medium-4 {
+    font-size: 1.4rem!important;
+}
+
+.font-medium-5 {
+    font-size: 1.5rem!important;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-bottom: .5rem;
+    font-weight: 400;
+    line-height: 1.2;
+    color: inherit;
+}
+.text-danger {
+    color: #FF7588 !important;
+}
+.text-info {
+    color: #2DCEE3 !important;
+}
+.text-success {
+    color: #16D39A !important;
+}
+.text-warning {
+    color: #FFA87D !important;
+}
+.text-primary {
+    color: #00B5B8 !important;
+}
+.h3, h3 {
+    font-size: 1.51rem !important;
+}
+
+.progress.progress-md {
+    height: 1rem !important;
+}
+.mt-1, .my-1 {
+    margin-top: 1rem !important;
+}
+.line-on-side {
+    border-bottom: 1px solid #DADADA;
+    line-height: .1em;
+    margin: 10px 0 20px;
+}
+.font-small-3 {
+    font-size: .9rem!important;
+}
+.line-on-side span {
+    background: #FFF;
+    padding: 0 10px;
+}
+
+.btn.btn-round {
+    border-radius: 2rem;
+}
+
+.btn-float {
+    padding: 15px;
+    white-space: normal;
+    -webkit-box-shadow: 0 6px 10px rgba(0,0,0,.15);
+    box-shadow: 0 6px 10px rgba(0,0,0,.15);
+}
+
 input[type="search"],
 input[type="text"],
 input[type="email"],
 input[type="password"]{
-    background: transparent !important;;
-    border: 0 !important;;
-    border-radius: 0 !important;;
-    border-bottom: 1px solid #304854 !important;;
-    padding: 0 !important;
     -webkit-appearance: none !important;
     outline: none !important;
-    color:#fff !important;   
     outline-style: none !important;
     box-shadow: none !important;
+    border: 1px solid #CCD6E6  !important;
 }
 
 input:focus{
-    border-bottom: 1px solid #0cd664 !important;
+    border: 1px solid $success-color  !important;
+    outline: none !important;
+    -webkit-appearance: none !important;
+    outline-style: none !important;
 }
 
 h1{
     font-size: 36px !important;
-    color:#fff !important;
+    
     font-family: 'Source Sans Pro', sans-serif !important;
     font-weight: normal  !important;
+}
+
+.badge.badge.float-right{
+    margin-left: .5rem !important;
+    margin-top: .15rem !important;
 }
