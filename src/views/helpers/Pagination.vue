@@ -18,12 +18,10 @@
                         </td>
                         <td v-if="actions">
                             <router-link class="btn-sm btn btn-success mr-1" :to="{ name: route_uri+'-id', params: { id: item.id }}">
-                                <!--<i class="icon ion-md-create"></i>-->
                                 <span class="mdi mdi-pencil"></span>
                             </router-link>
                             
                             <button class="btn btn-sm btn-danger" @click="delete_item(item.id)" >
-                                <!--<i class="icon ion-md-trash"></i>-->
                                 <span class="mdi mdi-trash-can"></span>
                             </button>
                         </td>

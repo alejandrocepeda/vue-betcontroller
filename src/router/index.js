@@ -43,10 +43,36 @@ export default new Router({
 					props: true
 				},
 				{
+					path: '/app/bets',
+					name: 'bets',
+					meta: {title: 'Bets'},
+					component: () => import('@/views/app/bets'),
+				},
+				{
+					path: '/app/bets/:id',
+					name: 'bets-id',
+					meta: {title: 'Bets'},
+					component: () => import('@/views/app/bets/show.vue'),
+					props: true
+				},
+				{
 					path: '/app/users',
 					name: 'users',
 					meta: {title: 'Users'},
 					component: () => import('@/views/app/users')
+				},
+				{
+					path: '/app/roles',
+					name: 'roles',
+					meta: {title: 'Roles'},
+					component: () => import('@/views/app/roles')
+				},
+				{
+					path: '/app/roles/:id',
+					name: 'roles-id',
+					meta: {title: 'Roles'},
+					component: () => import('@/views/app/roles/show.vue'),
+					props: true
 				},
 				{
 					path: '/app/users/:id',

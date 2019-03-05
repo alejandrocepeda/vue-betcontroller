@@ -7,7 +7,7 @@
 
     <template v-else>     
          <div class="card-header">
-            <h4 class="card-title">user profile</h4>
+            <h4 class="card-title">role</h4>
         </div>
 
         <div class="card-body"> 
@@ -16,10 +16,11 @@
                 <div class="form-group row">  
                     <div class="col-md-6 mb-2">
                         <label  for="name">Name</label>
-                        <input type="text" v-model="user.name" class="form-control" name="name">
+                        <input type="text" v-model="role.name" class="form-control" name="name">
                     </div>
                 </div>
 
+                <!--
                 <div class="form-group row">
                     <div class="col-md-6 mb-2">  
                         <label  for="name">Email</label>
@@ -32,16 +33,16 @@
                         <label  for="name">Roles Group</label>
                         
                         <selectlist :model="user.roles" :options="roles"></selectlist>
-        
+                       
                     </div>    
                 </div>
-
+                -->
                 <div class="form-group row">
 
                     <div class="col-md-6 mb-2">
                         <div class="form-actions top">
                            
-                            <router-link class="btn btn-danger mr-2" :to="{ name: 'users'}">
+                            <router-link class="btn btn-danger mr-2" :to="{ name: 'roles'}">
                                 <span class="mdi mdi-chevron-left"></span> Back
                             </router-link>
 
@@ -51,6 +52,7 @@
                         </div>
                     </div>
                 </div>
+                
             </form>
         </div>
     </template>
@@ -58,8 +60,11 @@
 </template>	
 
 <script>
-import { mapState } from 'vuex'
+import Vue from 'vue'
+import axios from 'axios'
 import api from '@/config/api'
+import { validEmail } from '@/config/utils'
+
 import Selectlist from '@/views/helpers/Selectlist.vue'
 
 export default {
@@ -69,44 +74,24 @@ export default {
     },
     data() {
         return {
-            user:{},
-            roles:[]
+            role:{}
         }
     },
     created(){
-        this.getUser()
-        this.getRoles()
+        this.getRole()
     },
     computed :{
         loading(){
             return this.$store.state.loading
-        },
-        ...mapState([
-            'selectionRoles'
-        ])
+        }
     },
-    methods:{
-         updateRoles () {
-            
-            this.$store.state.loading = true
-
-            let toUpdate = {'roles':this.selectionRoles}
-            
-            api.Users().authorizeRoles(this.user.id, toUpdate).then(response => {
-                //api.SuccessResponse(response)
-                this.$store.state.loading = false
-            }).catch(error => {
-                //api.ErrorResponse(error)
-                this.$store.state.loading = false
-            })
-           
-        },
+    methods:{       
         update(){
             
-            this.updateRoles() 
-
+           
+            
             this.$store.state.loading = true
-            api.Users().update(this.user.id, this.user).then(response => {
+            api.Roles().update(this.role.id, this.role).then(response => {
                 //api.SuccessResponse(response)
                 this.$store.state.loading = false
             }).catch(error => {
@@ -115,26 +100,18 @@ export default {
             })
             
         },
-        getUser(){
+        getRole(){
             this.$store.state.loading = true
 
-            api.Users().getOne(this.id).then(response => {
+            api.Roles().getOne(this.id).then(response => {
                 this.$store.state.loading = false
-                this.user = response.data.data
+                this.role = response.data.data
             }).catch(error => {
                 //api.ErrorResponse(error)
                 this.$store.state.loading = false
                 console.log(error)
             })
-        },
-        getRoles(){
-            api.Roles().getAll().then(response => {
-                this.roles = response.data.data
-            }).catch(error => {
-                //api.ErrorResponse(error)
-                console.log(error)
-            })
-        },
+        }
     }
 }
 </script>

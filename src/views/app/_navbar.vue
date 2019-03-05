@@ -21,6 +21,7 @@
                                         <span class="mdi-24px mdi mdi-alpha-b-box"></span> Brand</h2>
                                     </a>     
                                 </li>
+
                             </ul>
                         </div>
 
@@ -30,6 +31,7 @@
                                 <li :key="item.id" v-for="item in topMenuItems" class="dropdown nav-item">
                                     <router-link class="nav-link" :to="{ name: item.routeName }" >{{ item.text }}</router-link>
                                 </li>
+
                             </ul>
                         </div>
                     </div>
@@ -46,20 +48,16 @@
                                 <span>{{ item.text }}</span>
                             </li>
 
-                            <li v-else :key="item.id"  class="nav-item has-sub ">
+                            <li v-else :key="item.id" :class="{'open':ItemSelected === item.id}" class="nav-item has-sub">
                                 
                                 <a class="nav-link" @click="redirect(item.routeName,item.id)" href="#">
                                     <span :class="item.iconClass"></span>
                                     <span class="menu-title">{{ item.text }}</span>
-
-                                    <!--<span v-show="item.count" style="right: 20px;font-weight: normal;" class="position-absolute badge badge badge-info badge-pill float-right mr-2">3</span>-->
-                            
                                     <span v-show="item.subitems" style="right: 0" :class="[ItemSelected === item.id ? 'mdi-chevron-down':'mdi-chevron-up']" class="mr-2 position-absolute mdi"></span>                            
                                 </a>
                             
                                 <ul :class="{'left-menu-collapsed':ItemSelected === item.id}" class="menu-content left-menu">
                                     <li :class="{'active':$route.name === subitem.routeName}" :key="subitem.id" v-for="subitem in item.subitems" class="is-shown">
-                                        
                                         <router-link class="menu-item" :to="{ name: subitem.routeName }" >
                                             <span v-if="item.iconClass" :class="subitem.iconClass"></span> {{ subitem.text }}
                                         </router-link>
@@ -79,7 +77,6 @@
 export default {
     data () {
         return {
-            showSidebar: false,
             ItemSelected:null,
             topMenuItems:[
                 { id:1,routeName : 'events',text:'Events' },
@@ -116,11 +113,12 @@ export default {
                 {
                     id:3,
                     routeName:null,
-                    text:'Markets',
+                    text:'Bets Markets',
                     count:true,
                     iconClass:'mr-2 mdi mdi-cart-outline',
                     subitems:[
                         { id:6,routeName : 'markets',text:'List Markets',iconClass:false, },
+                        { id:7,routeName : 'bets',text:'List Bets',iconClass:false, },
                     ]
                 },
                 {
@@ -145,6 +143,11 @@ export default {
             ]
         }
     },
+    computed:{
+        showSidebar(){
+            return this.$store.state.showSidebar
+        }
+    },
     methods:{
         redirect(name,id){
 
@@ -155,14 +158,16 @@ export default {
             }
         },
         toggleSidebar(){
-            this.showSidebar = !this.showSidebar
+            this.$store.state.showSidebar = !this.$store.state.showSidebar
         }
     }
 }
 </script>
  
 <style>
-
+.main-menu.menu-light .navigation>li.open{
+    border-left: 4px solid #00B5B8;
+}
 
 .left-menu{
     transition: all 600ms ease-out;
