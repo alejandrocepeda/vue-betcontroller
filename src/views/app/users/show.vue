@@ -13,27 +13,51 @@
         <div class="card-body"> 
             <form class="form">
                 
-                <div class="form-group row">  
-                    <div class="col-md-6 mb-2">
-                        <label  for="name">Name</label>
-                        <input type="text" v-model="user.name" class="form-control" name="name">
-                    </div>
-                </div>
 
-                <div class="form-group row">
-                    <div class="col-md-6 mb-2">  
-                        <label  for="name">Email</label>
-                        <input type="text" v-model="user.email" class="form-control" name="email">
-                    </div>    
-                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group row">  
+                            <div class="col mb-2">
+                                <label  for="name">Name</label>
+                                <input type="text" v-model="user.name" class="form-control" name="name">
+                            </div>
+                        </div>
 
-                <div class="form-group row">  
-                    <div class="col-md-6 mb-2">
-                        <label  for="name">Roles Group</label>
+                        <div class="form-group row">
+                            <div class="col mb-2">  
+                                <label  for="name">Email</label>
+                                <input type="text" v-model="user.email" class="form-control" name="email">
+                            </div>    
+                        </div>
+
                         
-                        <selectlist :model="user.roles" :options="roles"></selectlist>
-        
-                    </div>    
+                        <div class="form-group row">  
+                            <div class="col mb-2">
+                                <label  for="name">Roles Group</label>
+                                
+                                <selectlist :taggable="true" :model.sync="user.roles" :options="roles"></selectlist>
+                
+                            </div>    
+                        </div>
+                        
+
+                        <div class="form-group row">  
+                            <div class="col mb-2">
+                                <label  for="name">Bookmakers</label>
+                                
+                                <selectlist :multiple="false" :model.sync="user.bookmakers" :options="bookmakers"></selectlist>
+                
+                            </div>    
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group row">  
+                            <div class="col mb-2">
+                                <label  for="name">Password</label>
+                                <input type="password" v-model="password" class="form-control" name="password">
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group row">
@@ -59,8 +83,9 @@
 
 <script>
 import { mapState } from 'vuex'
-import api from '@/config/api'
 import Selectlist from '@/views/helpers/Selectlist.vue'
+import api from '@/config/api'
+
 
 export default {
     props: ['id'],
@@ -70,71 +95,56 @@ export default {
     data() {
         return {
             user:{},
-            roles:[]
+            password:null,
+            roles:[],
+            bookmakers:[]
         }
     },
     created(){
         this.getUser()
-        this.getRoles()
+        this.getBookmakers()
     },
     computed :{
-        loading(){
-            return this.$store.state.loading
-        },
         ...mapState([
-            'selectionRoles'
+            'loading'
         ])
     },
-    methods:{
-         updateRoles () {
-            
-            this.$store.state.loading = true
-
-            let toUpdate = {'roles':this.selectionRoles}
-            
-            api.Users().authorizeRoles(this.user.id, toUpdate).then(response => {
-                //api.SuccessResponse(response)
-                this.$store.state.loading = false
-            }).catch(error => {
-                //api.ErrorResponse(error)
-                this.$store.state.loading = false
-            })
-           
+    watch:{
+        'user.roles':function(value){
+            console.log(value)
         },
-        update(){
-            
-            this.updateRoles() 
+        'user.bookmakers':function(value){
+            console.log(value)
+        }
+    },
+    methods:{
+        update(){ 
 
-            this.$store.state.loading = true
-            api.Users().update(this.user.id, this.user).then(response => {
-                //api.SuccessResponse(response)
-                this.$store.state.loading = false
-            }).catch(error => {
-                //api.ErrorResponse(error)
-                this.$store.state.loading = false
-            })
-            
+            if (this.password){
+                this.user.password = this.password
+            }
+
+            api.Users().update(this.user.id, this.user)
+            api.Users().authorizeRoles(this.user.id, {'roles':this.user.roles})
         },
         getUser(){
-            this.$store.state.loading = true
-
+            
             api.Users().getOne(this.id).then(response => {
-                this.$store.state.loading = false
                 this.user = response.data.data
-            }).catch(error => {
-                //api.ErrorResponse(error)
-                this.$store.state.loading = false
-                console.log(error)
+                this.getRoles()
             })
+
         },
         getRoles(){
             api.Roles().getAll().then(response => {
                 this.roles = response.data.data
-            }).catch(error => {
-                //api.ErrorResponse(error)
-                console.log(error)
             })
         },
+        getBookmakers(){
+            api.Bookmakers().getAll().then(response => {
+                this.bookmakers = response.data.data
+            })
+        }
     }
 }
 </script>

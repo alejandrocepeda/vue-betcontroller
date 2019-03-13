@@ -2,6 +2,7 @@ import {setAxiosHeader} from './auth'
 
 setAxiosHeader()
 
+
 function Users (url = 'users') {
     return {
         getOne: (id) => axios.get(`${url}/${id}`),
@@ -13,6 +14,7 @@ function Users (url = 'users') {
         authorizeRoles: (id,toUpdate) => axios.put(`${url}/${id}/roles/`,toUpdate)
     }
 }
+
 
 function Markets (url = 'markets') {
     return {
@@ -53,7 +55,15 @@ function Roles (url = 'roles') {
         delete: (id) => axios.delete(`${url}/${id}`)
     }
 }
-
+function Bookmakers (url = 'bookmakers') {
+    return {
+        getOne: (id) => axios.get(`${url}/${id}`),
+        getAll: () => axios.get(`${url}?pagination=false`),
+        update: (id, toUpdate) => axios.put(`${url}/${id}`, toUpdate),
+        create: (toCreate) => axios.post(url, toCreate),
+        delete: (id) => axios.delete(`${url}/${id}`)
+    }
+}
 
 
 export default {
@@ -62,5 +72,6 @@ export default {
     Events,
     Roles,
     Bets,
+    Bookmakers
 }
   

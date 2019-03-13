@@ -1,5 +1,5 @@
 <template>
-    <div class="absolute loading">
+    <div class="loading">
         <div class="loader mx-auto my-5 py-5 text-center text-primary">
            
             <span class="mdi-68px mdi mdi-loading mdi-spin"></span>

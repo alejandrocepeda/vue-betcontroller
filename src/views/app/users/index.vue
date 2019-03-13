@@ -25,9 +25,8 @@
 </template>	
 
 <script>
-import axios from 'axios'
-import api from '@/config/api'
 
+import api from '@/config/api'
 
 export default {
   name: 'Users',

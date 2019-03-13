@@ -6,8 +6,11 @@
             :placeholder="placeHolder" 
             :label="label" 
             :track-by="trackBy" 
+            :allow-empty="allowEmpty"
+            :close-on-select="closeOnSelect"
             :options="options" 
             :multiple="multiple" 
+            :searchable="searchable"
             :taggable="taggable"
             @input="selectionChange">
         </multiselect>
@@ -36,9 +39,24 @@ export default {
                 return true
             }
         },
-        taggable:{
+        searchable:{
             default () {
                 return true
+            }
+        },
+        closeOnSelect:{
+            default () {
+                return true
+            }
+        },
+        allowEmpty:{
+            default () {
+                return false
+            }
+        },
+        taggable:{
+            default () {
+                return false
             }
         },
         label: {
@@ -65,16 +83,9 @@ export default {
             value: ''
         }
     },
-    watch: {
-        value(value){
-             this.$store.state.selectionRoles = value
-        }
-    },
     methods:{
         selectionChange(value){
-
-            console.log(value)
-            //this.$emit('input',value)    
+            this.$emit('update:model',value)
         }
     }
    
