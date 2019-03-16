@@ -11,7 +11,8 @@ function Users (url = 'users') {
         create: (toCreate) => axios.post(url, toCreate),
         delete: (id) => axios.delete(`${url}/${id}`),
         updateRole: (id, roleId) => axios.put(`${url}/${id}/roles/${roleId}`),
-        authorizeRoles: (id,toUpdate) => axios.put(`${url}/${id}/roles/`,toUpdate)
+        authorizeRoles: (id,toUpdate) => axios.put(`${url}/${id}/roles/`,toUpdate),
+        attachBookmaker: (id, bookmakerId) => axios.put(`${url}/${id}/bookmakers/${bookmakerId}`),
     }
 }
 

@@ -25,7 +25,7 @@
 </template>	
 
 <script>
-
+import { mapState } from 'vuex'
 import api from '@/config/api'
 
 export default {
@@ -62,11 +62,9 @@ export default {
 
       this.$store.state.loading = true
       api.Users().getAll().then(response => {
-          //api.SuccessResponse(response)
           this.$store.state.loading = false
           this.users =  response.data.data
       }).catch(error => {
-          //api.ErrorResponse(error)
           this.$store.state.loading = false
           console.log(error)
       })

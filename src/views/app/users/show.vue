@@ -1,5 +1,4 @@
 <template>
-
   <div class="card">
     <template v-if="loading">    
         <loading></loading>
@@ -12,7 +11,6 @@
 
         <div class="card-body"> 
             <form class="form">
-                
 
                 <div class="row">
                     <div class="col-6">
@@ -23,39 +21,38 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <div class="col mb-2">  
-                                <label  for="name">Email</label>
-                                <input type="text" v-model="user.email" class="form-control" name="email">
-                            </div>    
+                        <div class="form-group row">  
+                            <div class="col mb-2">
+                                <label  for="name">Bookmaker</label>
+                                <selectlist :multiple="false" :model.sync="user.bookmakers" :options="bookmakers"></selectlist>
+                            </div>
                         </div>
 
-                        
                         <div class="form-group row">  
                             <div class="col mb-2">
                                 <label  for="name">Roles Group</label>
-                                
                                 <selectlist :taggable="true" :model.sync="user.roles" :options="roles"></selectlist>
-                
-                            </div>    
+                            </div>   
                         </div>
-                        
 
-                        <div class="form-group row">  
-                            <div class="col mb-2">
-                                <label  for="name">Bookmakers</label>
-                                
-                                <selectlist :multiple="false" :model.sync="user.bookmakers" :options="bookmakers"></selectlist>
-                
-                            </div>    
-                        </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group row">  
                             <div class="col mb-2">
                                 <label  for="name">Password</label>
                                 <input type="password" v-model="password" class="form-control" name="password">
+                                
+                                <button @click="updatePassword()" v-show="password"  type="button" class="mt-3 btn btn-success">
+                                    Update Password
+                                </button>
                             </div>
+                        </div>
+
+                        <div class="form-group row">  
+                            <div class="col mb-2">  
+                                <label  for="name">Email</label>
+                                <input type="text" v-model="user.email" class="form-control" name="email">
+                            </div>    
                         </div>
                     </div>
                 </div>
@@ -101,7 +98,11 @@ export default {
         }
     },
     created(){
-        this.getUser()
+
+        if (this.id){
+            this.getUser()
+        }
+        
         this.getBookmakers()
     },
     computed :{
@@ -115,25 +116,25 @@ export default {
         },
         'user.bookmakers':function(value){
             console.log(value)
+        },
+        'password':function(value){
+            console.log(value)
         }
     },
     methods:{
+        updatePassword(){
+            api.Users().update(this.user.id, {'password':this.password})
+        },
         update(){ 
-
-            if (this.password){
-                this.user.password = this.password
-            }
-
             api.Users().update(this.user.id, this.user)
             api.Users().authorizeRoles(this.user.id, {'roles':this.user.roles})
+            api.Users().attachBookmaker(this.user.id,this.user.bookmakers.id)
         },
-        getUser(){
-            
+        getUser(){            
             api.Users().getOne(this.id).then(response => {
                 this.user = response.data.data
                 this.getRoles()
             })
-
         },
         getRoles(){
             api.Roles().getAll().then(response => {
