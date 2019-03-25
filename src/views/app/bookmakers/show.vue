@@ -6,7 +6,7 @@
 
     <template v-else>     
          <div class="card-header">
-            <h4 class="card-title">user profile</h4>
+            <h4 class="card-title">bookmaker profile</h4>
         </div>
 
         <div class="card-body"> 
@@ -17,25 +17,29 @@
                         <div class="form-group row">  
                             <div class="col mb-2">
                                 <label  for="name">Name</label>
-                                <input type="text" v-model="user.name" class="form-control" name="name">
+                                <input type="text" v-model="bookmaker.name" class="form-control" name="name">
                             </div>
                         </div>
 
+                        
                         <div class="form-group row">  
                             <div class="col mb-2">
-                                <label  for="name">Bookmaker</label>
-                                <selectlist :multiple="false" :model.sync="user.bookmakers" :options="bookmakers"></selectlist>
+                                <label  for="name">Status</label>
+                                <selectlist :multiple="false" :model.sync="bookmaker.status" :options="bookmaker_statuses"></selectlist>
                             </div>
                         </div>
-
+                        <!--
                         <div class="form-group row">  
                             <div class="col mb-2">
                                 <label  for="name">Roles Group</label>
                                 <selectlist :taggable="true" :model.sync="user.roles" :options="roles"></selectlist>
                             </div>   
                         </div>
+                        -->
 
                     </div>
+
+                    <!--
                     <div class="col-6">
                         <div class="form-group row">  
                             <div class="col mb-2">
@@ -62,6 +66,7 @@
                             </div>
                         </div>
                     </div>
+                    -->
                 </div>
 
                 <div class="form-group row">
@@ -69,7 +74,7 @@
                     <div class="col-md-6 mb-2">
                         <div class="form-actions top">
                            
-                            <router-link class="btn btn-danger mr-2" :to="{ name: 'users'}">
+                            <router-link class="btn btn-danger mr-2" :to="{ name: 'bookmakers'}">
                                 <span class="mdi mdi-chevron-left"></span> Back
                             </router-link>
 
@@ -87,32 +92,29 @@
 
 <script>
 import { mapState } from 'vuex'
+
 import Selectlist from '@/views/helpers/Selectlist.vue'
+
 import api from '@/config/api'
 
 
 export default {
     props: ['id'],
-    components: {
+    components:{
         Selectlist
     },
     data() {
         return {
-            user:{},
-            password:null,
-            roles:[],
-            bookmakers:[],
-            user_statuses:[]
+            bookmaker:{},
+            bookmaker_statuses:[]
         }
     },
     created(){
 
-        if (this.id){
-            this.getUser()
-        }
+        //if (this.id){
+            this.getBookmaker()
+        //}
         
-        this.getBookmakers()
-        this.getUserStatus()
     },
     computed :{
         ...mapState([
@@ -120,37 +122,24 @@ export default {
         ])
     },
     methods:{
-        updatePassword(){
-            api.Users().update(this.user.id, {'password':this.password})
-        },
+        
         update(){ 
 
-            this.user.user_status_id = this.user.status.id
+            this.bookmaker.bookmaker_status_id = this.bookmaker.status.id
 
-            api.Users().update(this.user.id, this.user)
-            api.Users().authorizeRoles(this.user.id, {'roles':this.user.roles})
-            api.Users().attachBookmaker(this.user.id,this.user.bookmakers.id)
+            api.Bookmakers().update(this.bookmaker.id, this.bookmaker)
         },
-        getUser(){            
-            api.Users().getOne(this.id).then(response => {
-                this.user = response.data.data
-                this.getRoles()
+        getBookmaker(){            
+            api.Bookmakers().getOne(this.id).then(response => {
+                this.bookmaker = response.data.data
+
+                this.getBookmakerStatus()
             })
         },
-        getRoles(){
-            api.Roles().getAll().then(response => {
-                this.roles = response.data.data
-            })
-        },
-        getBookmakers(){
-            api.Bookmakers().getAll().then(response => {
-                this.bookmakers = response.data.data
-            })
-        },
-        getUserStatus(){
-            api.UserStatus().getAll().then(response => {
+        getBookmakerStatus(){
+            api.BookmakerStatus().getAll().then(response => {
                 console.log(response.data.data)
-                this.user_statuses = response.data.data
+                this.bookmaker_statuses = response.data.data
             })
         }
     }

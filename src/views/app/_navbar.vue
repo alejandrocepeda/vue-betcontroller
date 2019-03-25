@@ -92,7 +92,7 @@ export default {
                     routeName:null,
                     text:'Events',
                     count:true,
-                    iconClass:'mr-2 mdi mdi-home-outline',
+                    iconClass:'mr-2 mdi mdi-calendar-range',
                     subitems:[
                         { id:1,routeName : 'events',text:'List Events',iconClass:false, },
                     ]
@@ -113,6 +113,16 @@ export default {
                 {
                     id:3,
                     routeName:null,
+                    text:'Bookmakers',
+                    count:true,
+                    iconClass:'mr-2 mdi mdi-home-outline',
+                    subitems:[
+                        { id:8,routeName : 'bookmakers',text:'List Bookmakers',iconClass:false, },
+                    ]
+                },
+                {
+                    id:4,
+                    routeName:null,
                     text:'Bets Markets',
                     count:true,
                     iconClass:'mr-2 mdi mdi-cart-outline',
@@ -121,20 +131,21 @@ export default {
                         { id:7,routeName : 'bets',text:'List Bets',iconClass:false, },
                     ]
                 },
+                
                 {
-                    id:4,
+                    id:5,
                     title:true,
                     text:'General'
                 },
                 {
-                    id:5,
+                    id:6,
                     routeName:'setting',
                     text:'Setting',
                     count:null,
                     iconClass:'mr-2 mdi mdi-settings-outline',
                 },
                 {
-                    id:6,
+                    id:7,
                     routeName:'logout',
                     text:'Exit',
                     count:null,

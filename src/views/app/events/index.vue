@@ -61,7 +61,7 @@ export default {
         },
         {
           label: 'Status',
-          field: 'status'
+          field: 'status.name'
         }
       ],
     }

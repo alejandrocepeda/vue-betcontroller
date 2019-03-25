@@ -34,7 +34,7 @@ export default {
         },
         {
           label: 'Market',
-          field: 'marketName'
+          field: 'market.name'
         }
       ],
     }

@@ -5,7 +5,7 @@
       
       <div class="row position-relative">
         <div class="col">
-          <h4 class="card-title">Users</h4>
+          <h4 class="card-title">bookmakers</h4>
         </div>
 
         <div class="col">
@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <pagination :uri="uri" :columns="columns" :rows="users"></pagination>
+        <pagination :uri="uri" :columns="columns" :rows="bookmakers"></pagination>
     </div>
     
     </div>
@@ -29,11 +29,11 @@ import { mapState } from 'vuex'
 import api from '@/config/api'
 
 export default {
-  name: 'Users',
+  name: 'Bookmakers',
   data() {
     return {
-      uri: 'users?sort_by=id&order_by=desc',
-      users : [],
+      uri: 'bookmakers?sort_by=id&order_by=desc',
+      bookmakers : [],
       columns: [
         {
           label: 'Id',
@@ -44,14 +44,6 @@ export default {
           field: 'name'
         },
         {
-          label: 'Email',
-          field: 'email'
-        },
-        {
-          label: 'Bookmaker',
-          field: 'bookmakers.name'
-        },
-        {
           label: 'Status',
           field: 'status.name'
         }
@@ -59,15 +51,15 @@ export default {
     }
   },
   created() {
-    this.getUsers()
+    this.getBookmakers()
   },
   methods: {   
-    getUsers(){
+    getBookmakers(){
 
       this.$store.state.loading = true
-      api.Users().getAll().then(response => {
+      api.Bookmakers().getAll().then(response => {
           this.$store.state.loading = false
-          this.users =  response.data.data
+          this.bookmakers =  response.data.data
       }).catch(error => {
           this.$store.state.loading = false
           console.log(error)

@@ -13,9 +13,20 @@ function Users (url = 'users') {
         updateRole: (id, roleId) => axios.put(`${url}/${id}/roles/${roleId}`),
         authorizeRoles: (id,toUpdate) => axios.put(`${url}/${id}/roles/`,toUpdate),
         attachBookmaker: (id, bookmakerId) => axios.put(`${url}/${id}/bookmakers/${bookmakerId}`),
+        
     }
 }
 
+function UserStatus (url = 'user-statuses') {
+    return {
+        getOne: (id) => axios.get(`${url}/${id}`),
+        getAll: () => axios.get(`${url}?pagination=false`),
+        update: (id, toUpdate) => axios.put(`${url}/${id}`, toUpdate),
+        create: (toCreate) => axios.post(url, toCreate),
+        delete: (id) => axios.delete(`${url}/${id}`)
+        
+    }
+}
 
 function Markets (url = 'markets') {
     return {
@@ -26,6 +37,8 @@ function Markets (url = 'markets') {
         delete: (id) => axios.delete(`${url}/${id}`)
     }
 }
+
+
 
 function Bets (url = 'bets') {
     return {
@@ -66,13 +79,26 @@ function Bookmakers (url = 'bookmakers') {
     }
 }
 
+function BookmakerStatus (url = 'bookmaker-statuses') {
+    return {
+        getOne: (id) => axios.get(`${url}/${id}`),
+        getAll: () => axios.get(`${url}?pagination=false`),
+        update: (id, toUpdate) => axios.put(`${url}/${id}`, toUpdate),
+        create: (toCreate) => axios.post(url, toCreate),
+        delete: (id) => axios.delete(`${url}/${id}`)
+        
+    }
+}
+
 
 export default {
     Users,
+    UserStatus,
     Markets,
     Events,
     Roles,
     Bets,
-    Bookmakers
+    Bookmakers,
+    BookmakerStatus
 }
   

@@ -91,8 +91,8 @@ export default {
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.value) {
-                //axios.delete(this.route_uri + '/' + id, {}).then(() => {
-                //    this.$emit('update:rows', this.rows.filter(item => item.id != id))
+                axios.delete(this.route_uri + '/' + id, {}).then(() => {
+                    //this.$emit('update:rows', this.rows.filter(item => item.id != id))
 
                     this.$swal({
                         title: 'Deleted!',
@@ -101,7 +101,7 @@ export default {
                         customClass: 'bg-body rounded-0',
                         confirmButtonClass: 'btn btn-primary font-weight-light',
                     })
-                //})
+                })
                 }
             })
         },

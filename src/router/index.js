@@ -43,6 +43,19 @@ export default new Router({
 					props: true
 				},
 				{
+					path: '/app/bookmakers',
+					name: 'bookmakers',
+					meta: {title: 'Bookmakers'},
+					component: () => import('@/views/app/bookmakers'),
+				},
+				{
+					path: '/app/bookmakers/:id',
+					name: 'bookmakers-id',
+					meta: {title: 'Bookmakers'},
+					component: () => import('@/views/app/bookmakers/show.vue'),
+					props: true
+				},
+				{
 					path: '/app/bets',
 					name: 'bets',
 					meta: {title: 'Bets'},
