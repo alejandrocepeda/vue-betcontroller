@@ -3,6 +3,9 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+
+console.log(localStorage.showSidebar)
+
 export const store = new Vuex.Store({
     state : {
         showSidebar:false,

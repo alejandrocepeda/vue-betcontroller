@@ -50,7 +50,7 @@
 
                             <li v-else :key="item.id" :class="{'open':ItemSelected === item.id}" class="nav-item has-sub">
                                 
-                                <a class="nav-link" @click="redirect(item.routeName,item.id)" href="#">
+                                <a class="nav-link" @click="redirect(item)" href="#">
                                     <span :class="item.iconClass"></span>
                                     <span class="menu-title">{{ item.text }}</span>
                                     <span v-show="item.subitems" style="right: 0" :class="[ItemSelected === item.id ? 'mdi-chevron-down':'mdi-chevron-up']" class="mr-2 position-absolute mdi"></span>                            
@@ -74,6 +74,9 @@
 </template>
 
 <script>
+
+import { logout } from '@/config/auth'
+
 export default {
     data () {
         return {
@@ -149,6 +152,9 @@ export default {
                     routeName:'logout',
                     text:'Exit',
                     count:null,
+                    action : function(){
+                        logout()
+                    },
                     iconClass:'mr-2 mdi mdi-power',
                 }
             ]
@@ -159,13 +165,19 @@ export default {
             return this.$store.state.showSidebar
         }
     },
+        
     methods:{
-        redirect(name,id){
+        
+        redirect(item){
 
-            this.ItemSelected = id
+            this.ItemSelected = item.id
+            
+            if (item.action != undefined){
+                item.action.call()
+            }
 
-            if (name){
-                this.$router.push({name:name})
+            if (item.routeName){
+                this.$router.push({name:item.routeName})
             }
         },
         toggleSidebar(){
@@ -193,7 +205,6 @@ span.menu-title{
     font-size: 0.9rem;
 }
 .menu-accordion{
-    transition: all 0.8s ease-in-out;
     width: 261px;
     position: fixed;
     left: 0;

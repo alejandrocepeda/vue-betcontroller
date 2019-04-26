@@ -42,9 +42,7 @@ export default {
 </script>
 
 <style scope>
-.content-wrapper{
-    transition: all 600ms ease-out;
-}
+
 .content-menu-collapsed{
     margin-left:260px;
 }
