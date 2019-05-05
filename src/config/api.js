@@ -6,7 +6,8 @@ setAxiosHeader()
 function Users (url = 'users') {
     return {
         getOne: (id) => axios.get(`${url}/${id}`),
-        getAll: () => axios.get(`${url}?pagination=false`),
+        getAll: () => axios.get(`${url}`),
+        getPaginate: () => axios.get(`${url}?pagination=true`),
         update: (id, toUpdate) => axios.put(`${url}/${id}`, toUpdate),
         create: (toCreate) => axios.post(url, toCreate),
         delete: (id) => axios.delete(`${url}/${id}`),
@@ -31,7 +32,8 @@ function UserStatus (url = 'user-statuses') {
 function Markets (url = 'markets') {
     return {
         getOne: (id) => axios.get(`${url}/${id}`),
-        getAll: () => axios.get(`${url}?pagination=false`),
+        getAll: () => axios.get(`${url}`),
+        getPaginate: () => axios.get(`${url}?pagination=true`),
         update: (id, toUpdate) => axios.put(`${url}/${id}`, toUpdate),
         create: (toCreate) => axios.post(url, toCreate),
         delete: (id) => axios.delete(`${url}/${id}`)
@@ -43,7 +45,8 @@ function Markets (url = 'markets') {
 function Bets (url = 'bets') {
     return {
         getOne: (id) => axios.get(`${url}/${id}`),
-        getAll: () => axios.get(`${url}?pagination=false`),
+        getAll: () => axios.get(`${url}`),
+        getPaginate: () => axios.get(`${url}?pagination=true`),
         update: (id, toUpdate) => axios.put(`${url}/${id}`, toUpdate),
         create: (toCreate) => axios.post(url, toCreate),
         delete: (id) => axios.delete(`${url}/${id}`)
@@ -53,7 +56,8 @@ function Bets (url = 'bets') {
 function Events (url = 'events') {
     return {
         getOne: (id) => axios.get(`${url}/${id}`),
-        getAll: () => axios.get(`${url}?pagination=false`),
+        getAll: () => axios.get(`${url}`),
+        getPaginate: () => axios.get(`${url}?pagination=true`),
         update: (id, toUpdate) => axios.put(`${url}/${id}`, toUpdate),
         create: (toCreate) => axios.post(url, toCreate),
         delete: (id) => axios.delete(`${url}/${id}`)
@@ -63,7 +67,8 @@ function Events (url = 'events') {
 function Roles (url = 'roles') {
     return {
         getOne: (id) => axios.get(`${url}/${id}`),
-        getAll: () => axios.get(`${url}?pagination=false`),
+        getAll: () => axios.get(`${url}`),
+        getPaginate: () => axios.get(`${url}?pagination=true`),
         update: (id, toUpdate) => axios.put(`${url}/${id}`, toUpdate),
         create: (toCreate) => axios.post(url, toCreate),
         delete: (id) => axios.delete(`${url}/${id}`)
@@ -72,7 +77,8 @@ function Roles (url = 'roles') {
 function Bookmakers (url = 'bookmakers') {
     return {
         getOne: (id) => axios.get(`${url}/${id}`),
-        getAll: () => axios.get(`${url}?pagination=false`),
+        getAll: () => axios.get(`${url}`),
+        getPaginate: () => axios.get(`${url}?pagination=true`),
         update: (id, toUpdate) => axios.put(`${url}/${id}`, toUpdate),
         create: (toCreate) => axios.post(url, toCreate),
         delete: (id) => axios.delete(`${url}/${id}`)
@@ -82,7 +88,7 @@ function Bookmakers (url = 'bookmakers') {
 function BookmakerStatus (url = 'bookmaker-statuses') {
     return {
         getOne: (id) => axios.get(`${url}/${id}`),
-        getAll: () => axios.get(`${url}?pagination=false`),
+        getAll: () => axios.get(`${url}`),
         update: (id, toUpdate) => axios.put(`${url}/${id}`, toUpdate),
         create: (toCreate) => axios.post(url, toCreate),
         delete: (id) => axios.delete(`${url}/${id}`)

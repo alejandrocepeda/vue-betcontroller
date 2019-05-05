@@ -75,6 +75,20 @@ export default new Router({
 					component: () => import('@/views/app/users')
 				},
 				{
+					path: '/app/users/:id',
+					name: 'users-id',
+					meta: {title: 'Users'},
+					component: () => import('@/views/app/users/show.vue'),
+					props: true
+				},
+				{
+					path: '/app/users/create',
+					name: 'users-create',
+					meta: {title: 'Users'},
+					component: () => import('@/views/app/users/create.vue'),
+					props: true
+				},
+				{
 					path: '/app/roles',
 					name: 'roles',
 					meta: {title: 'Roles'},
@@ -85,13 +99,6 @@ export default new Router({
 					name: 'roles-id',
 					meta: {title: 'Roles'},
 					component: () => import('@/views/app/roles/show.vue'),
-					props: true
-				},
-				{
-					path: '/app/users/:id',
-					name: 'users-id',
-					meta: {title: 'Users'},
-					component: () => import('@/views/app/users/show.vue'),
 					props: true
 				},
 				{

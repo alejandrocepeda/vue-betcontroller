@@ -9,9 +9,11 @@
         </div>
 
         <div class="col">
-          <button style="right:15px"  class="position-absolute btn btn-success" >
+
+          <router-link style="right:15px" class="position-absolute btn btn-success" :to="{name:'users-create'}">
             <span class="mdi mdi-plus"></span> Nuevo
-          </button>
+          </router-link>
+          
         </div>
       </div>
 
@@ -65,7 +67,7 @@ export default {
     getUsers(){
 
       this.$store.state.loading = true
-      api.Users().getAll().then(response => {
+      api.Users().getPaginate().then(response => {
           this.$store.state.loading = false
           this.users =  response.data.data
       }).catch(error => {

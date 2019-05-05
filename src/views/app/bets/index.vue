@@ -7,7 +7,7 @@
     </div>
 
     <div class="card-body">
-        <pagination :uri="uri" :columns="columns" :rows="bets"></pagination>
+        <pagination :uri="uri" :pagination="pagination" :columns="columns" :rows="bets"></pagination>
     </div>
     
     </div>
@@ -21,8 +21,9 @@ export default {
   name: 'Bets',
   data() {
     return {
-      uri: 'bets?sort_by=id&order_by=desc',
+      uri: 'bets?pagination=true',
       bets : [],
+      pagination: {},
       columns: [
         {
           label: 'Id',
@@ -47,14 +48,19 @@ export default {
       
       this.$store.state.loading = true
 
-      api.Bets().getAll().then(response => {
+      api.Bets().getPaginate().then(response => {
           //api.SuccessResponse(response)
           this.$store.state.loading = false
           this.bets =  response.data.data
+
+          this.pagination = response.data.meta.pagination
+
+          //console.log(this.pagination)
+
+          //console.log(response.data.meta.pagination)
       }).catch(error => {
           //api.ErrorResponse(error)
           this.$store.state.loading = false
-          console.log(error)
       })
       
     }

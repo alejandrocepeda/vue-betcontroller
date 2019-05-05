@@ -92,7 +92,12 @@ import api from '@/config/api'
 
 
 export default {
-    props: ['id'],
+    props: {
+        id : {
+            type : Number,
+            default : 0
+        }
+    },
     components: {
         Selectlist
     },
@@ -149,7 +154,6 @@ export default {
         },
         getUserStatus(){
             api.UserStatus().getAll().then(response => {
-                console.log(response.data.data)
                 this.user_statuses = response.data.data
             })
         }
