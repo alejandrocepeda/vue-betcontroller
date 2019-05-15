@@ -36,45 +36,9 @@
             <div class="col-xl col-0 d-xl-block d-none text-center">
                 <span class="small text-default px-1">Showing {{ pagination.pagination.from}} to {{pagination.pagination.to}} of {{pagination.pagination.total}} entries</span>
             </div> -->
-
-            
-            <div class="row align-items-center border-bottom pb-3 mx-0 mb-4">
-                {{ pagination }} <br>
-                {{ pagesNumber }}
-                
-                <div class="col-md align-items-center mt-xl-0 mt-3">
-                    <nav class="float-right">
-                        <ul class="pagination mb-0 small">
-                            <li class="page-item" :class="{'disabled':pagination.current_page == 1}">
-                                <!-- <a class="text-secondary page-link" href="javascript:void(0)" aria-label="Previous" v-on:click.prevent="changePage(pagination.current_page - 1)">
-                                    <span aria-hidden="true">« Previous</span>
-                                </a>
-                                 -->
-
-                                 <router-link to="{}" class="text-secondary page-link">
-                                     <span aria-hidden="true">« Previous</span>
-                                 </router-link>
-                            </li>
-                            
-                            <!-- <li class="page-item" v-for="page in pagesNumber" :class="{'active': page == pagination.current_page}">
-                                <a class="text-secondary page-link" href="javascript:void(0)" v-on:click.prevent="changePage(page)">{{ page }}</a>
-                            </li> -->
-                            
-                            <li class="page-item" :class="{'disabled':pagination.current_page == pagination.last_page}">
-                                {{ uri }}
-                                 <router-link :to="{path:`${uri}&page=${pagination.current_page + 1}&per_page=10`}" class="text-secondary page-link">
-                                     <span aria-hidden="true">« Previous</span>
-                                 </router-link>
-<!--                                  
-                                <a class="text-secondary page-link" href="javascript:void(0)" aria-label="Next" v-on:click.prevent="changePage(pagination.current_page + 1)">
-                                    <span aria-hidden="true">Next »</span>
-                                </a> -->
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                
-            </div>
+    
+                    
+           {{ pagination }}
             
         </template>
     </div>
@@ -93,7 +57,7 @@ export default {
         },
         pagination: {
             type: Object,
-            required: true
+            required: false
         },
         offset: {
             type: Number,
@@ -111,6 +75,9 @@ export default {
             type: String,
             required: true
         },
+    },
+    created(){
+        console.log(this.pagination)
     },
     computed : {
         loading(){
